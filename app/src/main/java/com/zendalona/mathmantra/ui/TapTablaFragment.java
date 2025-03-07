@@ -31,6 +31,7 @@ public class TapTablaFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         soundEffectUtility = SoundEffectUtility.getInstance(requireContext());
+        soundEffectUtility.loadSound(R.raw.drums_sound);
     }
 
     @Override
