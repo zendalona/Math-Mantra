@@ -77,4 +77,35 @@ public class MainActivity extends AppCompatActivity implements FragmentNavigatio
         fragmentTransaction.commit();
     }
 
+    private AudioInputHelper audioInputHelper;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        // Initialize audio listener
+        audioInputHelper = new AudioInputHelper(() -> {
+            runOnUiThread(() -> processAnswerFromClap());
+        });
+
+        audioInputHelper.startListening();
+    }
+
+    private void processAnswerFromClap() {
+        // Handle logic to register an answer when a clap is detected
+        // For now, assume a correct answer on each clap
+        Toast.makeText(this, "Clap Detected! Answer Submitted.", Toast.LENGTH_SHORT).show();
+
+        // Here, you can integrate logic to validate answers
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (audioInputHelper != null) {
+            audioInputHelper.stopListening();
+        }
+    }
+    
 }
