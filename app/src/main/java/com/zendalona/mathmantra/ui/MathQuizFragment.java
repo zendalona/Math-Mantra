@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.zendalona.mathmantra.R;
@@ -50,8 +51,15 @@ public class MathQuizFragment extends Fragment {
                 .append(" = ?");
         binding.answerEt.setText("");
         binding.questionTv.setText(questionBuilder);
-        binding.submitAnswerBtn
-                .setOnClickListener(v -> showResultDialog(Integer.parseInt(binding.answerEt.getText().toString()) == numbers[2]));
+        binding.submitAnswerBtn.setOnClickListener(v -> {
+            String answerText = binding.answerEt.getText().toString().trim();
+            if (answerText.isEmpty()) {
+                Toast.makeText(getContext(), "Please enter an answer", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            int answer = Integer.parseInt(answerText);
+            showResultDialog(answer == numbers[2]);
+        });
     }
 
     private void showResultDialog(boolean isCorrect) {
