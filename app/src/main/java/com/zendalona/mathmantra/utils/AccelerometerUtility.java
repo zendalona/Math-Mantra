@@ -14,6 +14,7 @@ public class AccelerometerUtility implements SensorEventListener {
     private SensorManager sensorManager;
     private Sensor accelerometer;
     private boolean isDeviceShaken = false;
+    private boolean isShaking = false;
     private float lastX, lastY, lastZ;
     private long lastUpdate = 0;
 
@@ -50,8 +51,11 @@ public class AccelerometerUtility implements SensorEventListener {
                 float z = event.values[2];
 
                 float speed = Math.abs(x + y + z - lastX - lastY - lastZ) / diffTime * 10000;
-                if (speed > SHAKE_THRESHOLD) {
+                if (speed > SHAKE_THRESHOLD && !isShaking) {
                     isDeviceShaken = true;
+                    isShaking = true;
+                } else if (isShaking && speed < SHAKE_THRESHOLD) {
+                    isShaking = false;
                 }
 
                 lastX = x;

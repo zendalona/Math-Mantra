@@ -38,6 +38,7 @@ public class RingBellFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         soundEffectUtility = SoundEffectUtility.getInstance(requireContext());
+        soundEffectUtility.loadSound(R.raw.bell_ring);
         accelerometerUtility = new AccelerometerUtility(requireContext());
     }
 
