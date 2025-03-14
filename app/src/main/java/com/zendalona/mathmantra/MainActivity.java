@@ -7,6 +7,8 @@ import androidx.core.view.WindowInsetsControllerCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.activity.OnBackPressedCallback;
+import androidx.activity.OnBackPressedDispatcher;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -33,7 +35,27 @@ public class MainActivity extends AppCompatActivity implements FragmentNavigatio
         controller.hide(WindowInsetsCompat.Type.statusBars() | WindowInsetsCompat.Type.navigationBars());
         controller.setSystemBarsBehavior(WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE);
 
-        if (savedInstanceState == null) loadFragment(new DashboardFragment(), FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+        // Handle back button press using OnBackPressedDispatcher
+        OnBackPressedDispatcher onBackPressedDispatcher = getOnBackPressedDispatcher();
+        onBackPressedDispatcher.addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                if (fragmentManager.getBackStackEntryCount() > 0) {
+                    fragmentManager.popBackStack();
+                } else {
+                    finish();
+                }
+            }
+        });
+
+        if (savedInstanceState == null) {
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(binding.fragmentContainer.getId(), new DashboardFragment());
+            fragmentTransaction.commit();
+        }
+
 
         setSupportActionBar(binding.toolbar);
         ActionBar actionBar = getSupportActionBar();
@@ -74,6 +96,7 @@ public class MainActivity extends AppCompatActivity implements FragmentNavigatio
         fragmentTransaction.setTransition(transition);
         fragmentTransaction.replace(binding.fragmentContainer.getId(), fragment);
         // TODO : binding.toolbar.setTitle();
+        fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
     }
 
