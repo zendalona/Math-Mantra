@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_home"
+        android:icon="@drawable/book"
+        android:title="Learn"/>
+    <item
+        android:id="@+id/nav_profile"
+        android:icon="@drawable/progress"
+        android:title="Progress"/>
+    <item
+        android:id="@+id/nav_settings"
+        android:icon="@drawable/user"
+        android:title="Me" />
+
+
+</menu>
