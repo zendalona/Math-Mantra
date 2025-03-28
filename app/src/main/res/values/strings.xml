@@ -3,4 +3,11 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="use_to_move"><![CDATA[<< Use -/+ to move >>]]></string>
+    <string name="ring_bell_icon">ring bell</string>
+    <string name="play_drums_icon">play drums</string>
+    <string name="recite_numbers_icon">recite numbers</string>
+    <string name="take_a_lesson_icon">take a lesson</string>
+    <string name="mcq_icon">mcq</string>
+    <string name="single_choice_icon">single choice</string>
+    <string name="number_line_icon">number line</string>
 </resources>
