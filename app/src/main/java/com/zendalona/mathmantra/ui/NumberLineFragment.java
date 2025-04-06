@@ -57,6 +57,9 @@ public class NumberLineFragment extends Fragment {
     public void onPause() {
         super.onPause();
 //        requireActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        if (tts != null) {
+            tts.stopSpeaking();  // Add a stop method in TTSUtility if not present
+        }
     }
 
     @Override
@@ -167,10 +170,12 @@ public class NumberLineFragment extends Fragment {
 //        tts.speak("Click on continue!");
     }
 
-
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        if (tts != null) {
+            tts.shutdown();  // Properly release TTS resources
+        }
         binding = null;
     }
 }

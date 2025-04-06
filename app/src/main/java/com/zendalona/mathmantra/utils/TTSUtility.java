@@ -29,11 +29,12 @@ public class TTSUtility {
         tts.setSpeechRate(rate);
     }
 
-    public void stop() {
-        if (tts != null) {
+    public void stopSpeaking() {
+        if (tts != null && tts.isSpeaking()) {
             tts.stop();
         }
     }
+
 
     public void shutdown() {
         if (tts != null) {
