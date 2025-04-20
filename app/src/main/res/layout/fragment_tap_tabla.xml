@@ -4,25 +4,41 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.TapTablaFragment">
+    tools:context=".ui.learn.TapTablaFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tap_count"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/count_card"
+            android:layout_width="144dp"
+            android:layout_height="160dp"
+            android:layout_marginTop="32dp"
+            android:elevation="4dp"
+            app:cardCornerRadius="24dp"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="25dp"
-            android:layout_marginEnd="25dp"
-            android:clickable="false"
-            android:focusable="false"
-            android:text="0"
-            android:textSize="48sp"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tap_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:text="0"
+                    android:textColor="#3B82F6"
+                    android:textSize="100sp" />
+
+            </RelativeLayout>
+        </com.google.android.material.card.MaterialCardView>
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/tabla_animation_view"
@@ -31,11 +47,11 @@
             android:layout_marginTop="48dp"
             android:clickable="true"
             android:focusable="true"
-            android:contentDescription="Double tap to play drums"
+            android:contentDescription="Drums animation"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.503"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/count_card"
             app:lottie_autoPlay="false"
             app:lottie_loop="false"
             app:lottie_rawRes="@raw/drums" />
@@ -44,28 +60,13 @@
             android:id="@+id/tap_me_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="50dp"
-            android:clickable="false"
-            android:focusable="false"
+            android:layout_marginTop="50dp"
             android:text="Tap to play!"
             android:textSize="48sp"
             android:textAlignment="center"
-            app:layout_constraintBottom_toTopOf="@+id/mole_up_siv"
+            app:layout_constraintTop_toBottomOf="@+id/tabla_animation_view"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
-
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/mole_up_siv"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:layout_marginTop="30dp"
-            android:clickable="false"
-            android:focusable="false"
-            android:src="@drawable/molepointingup"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginBottom="50dp"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

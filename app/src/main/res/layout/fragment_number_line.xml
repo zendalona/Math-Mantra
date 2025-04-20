@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.NumberLineFragment">
+    tools:context=".ui.learn.NumberLineFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -25,7 +25,7 @@
             android:layout_marginBottom="10dp"/>
 
 
-            <com.zendalona.mathmantra.ui.NumberLineView
+            <com.zendalona.mathmantra.ui.learn.NumberLineView
                 android:id="@+id/number_line_view"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"

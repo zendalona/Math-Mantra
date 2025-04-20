@@ -1,4 +1,4 @@
-package com.zendalona.mathmantra.ui;
+package com.zendalona.mathmantra.ui.learn;
 
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;

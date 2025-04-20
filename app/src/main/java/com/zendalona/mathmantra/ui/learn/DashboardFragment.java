@@ -1,4 +1,4 @@
-package com.zendalona.mathmantra.ui;
+package com.zendalona.mathmantra.ui.learn;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.zendalona.mathmantra.databinding.FragmentDashboardBinding;
+import com.zendalona.mathmantra.ui.learn.canvas.CanvasFragment;
 import com.zendalona.mathmantra.utils.FragmentNavigation;
 
 public class DashboardFragment extends Fragment {
@@ -55,6 +56,11 @@ public class DashboardFragment extends Fragment {
         binding.numberLineCv.setOnClickListener(v -> {
             if (navigationListener != null) navigationListener.loadFragment(new NumberLineFragment(),FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
         });
+        binding.canvasCv.setOnClickListener(v -> {
+            if (navigationListener != null) navigationListener.loadFragment(new CanvasFragment(), FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+        });
+
+
 
         return binding.getRoot();
     }

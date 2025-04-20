@@ -1,244 +1,392 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/lightBlue"
-    tools:context=".ui.DashboardFragment">
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:paddingBottom="12dp"
+    tools:context=".ui.learn.DashboardFragment">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="center">
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingBottom="24dp">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center"
-            android:layout_marginBottom="10dp">
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/ring_bell_cv"
-            android:layout_width="175dp"
-            android:layout_height="100dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            app:cardCornerRadius="20dp"
-            app:cardElevation="10dp"
-            app:cardBackgroundColor="@color/white">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:orientation="vertical">
-                <com.google.android.material.imageview.ShapeableImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:src="@drawable/bell"
-                    android:clickable="false"
-                    android:focusable="false"/>
-                <com.google.android.material.textview.MaterialTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="26sp"
-                    android:textAlignment="center"
-                    android:text="Ring a bell"
-                    android:textColor="@color/blue"/>
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/tap_tabla_cv"
-            android:layout_width="175dp"
-            android:layout_height="100dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"            app:cardCornerRadius="20dp"
-            app:cardElevation="10dp"
-            app:cardBackgroundColor="@color/white">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:orientation="vertical">
-                <com.google.android.material.imageview.ShapeableImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:src="@drawable/drum"
-                    android:clickable="false"
-                    android:focusable="false"/>
-                <com.google.android.material.textview.MaterialTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="26sp"
-                    android:textAlignment="center"
-                    android:text="Play drums"
-                    android:textColor="@color/blue"/>
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
-
-        </LinearLayout>
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/speak_numbers_cv"
-            android:layout_width="match_parent"
-            android:layout_height="75dp"
-            android:layout_marginStart="25dp"
-            android:layout_marginEnd="25dp"
-            android:layout_marginBottom="15dp"
-            app:cardCornerRadius="20dp"
-            app:cardElevation="10dp"
-            app:cardBackgroundColor="@color/white">
-        <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-                <com.google.android.material.imageview.ShapeableImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_marginStart="50dp"
-                    android:src="@drawable/mic"
-                    android:clickable="false"
-                    android:focusable="false"/>
-                <com.google.android.material.textview.MaterialTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="26sp"
-                    android:layout_marginStart="30dp"
-                    android:text="Recite Numbers"
-                    android:textColor="@color/blue"/>
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/tts_cv"
             android:layout_width="match_parent"
-            android:layout_height="75dp"
-            android:layout_marginStart="25dp"
-            android:layout_marginEnd="25dp"
-            android:layout_marginBottom="15dp"
+            android:layout_height="132dp"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="32dp"
             app:cardCornerRadius="20dp"
-            app:cardElevation="10dp"
-            app:cardBackgroundColor="@color/white">
-            <LinearLayout
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:layout_height="match_parent">
+
                 <com.google.android.material.imageview.ShapeableImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_marginStart="50dp"
-                    android:src="@drawable/books"
+                    android:id="@+id/ic_lesson"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="12dp"
                     android:clickable="false"
-                    android:focusable="false"/>
+                    android:focusable="false"
+                    android:src="@drawable/lesson" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/lesson_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_toEndOf="@+id/ic_lesson"
+                    android:text="Take a lesson"
+                    android:textColor="@color/blue"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
                 <com.google.android.material.textview.MaterialTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="26sp"
-                    android:layout_marginStart="30dp"
-                    android:text="Take a lesson"
-                    android:textColor="@color/blue"/>
+                    android:layout_below="@+id/lesson_txt"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_toEndOf="@+id/ic_lesson"
+                    android:text="Continue your learning journey"
+                    android:textColor="@color/blue"
+                    android:textSize="12sp" />
+
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:layout_width="132dp"
+                    android:layout_height="40dp"
+                    android:layout_below="@+id/ic_lesson"
+                    android:layout_marginStart="28dp"
+                    android:layout_marginTop="8dp"
+                    android:backgroundTint="@color/white"
+                    android:text="Start  Now" />
+            </RelativeLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/ring_bell_cv"
+            android:layout_width="180dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="32dp"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="4dp"
+            app:layout_constraintBottom_toTopOf="@id/mcq_cv"
+            app:layout_constraintEnd_toStartOf="@+id/tap_tabla_cv"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tts_cv">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:src="@drawable/bell" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Ring a bell"
+                    android:textAlignment="center"
+                    android:textColor="@color/blue"
+                    android:textSize="18sp" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center"
-            android:layout_marginBottom="10dp">
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/tap_tabla_cv"
+            android:layout_width="180dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="32dp"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="4dp"
+            app:layout_constraintBottom_toTopOf="@id/math_quiz_cv"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/ring_bell_cv"
+            app:layout_constraintTop_toBottomOf="@id/tts_cv">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:src="@drawable/drum" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Play drums"
+                    android:textAlignment="center"
+                    android:textColor="@color/blue"
+                    android:textSize="18sp" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/mcq_cv"
-            android:layout_width="175dp"
+            android:layout_width="180dp"
             android:layout_height="100dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
+            android:layout_marginTop="20dp"
+            app:cardBackgroundColor="@color/white"
             app:cardCornerRadius="20dp"
-            app:cardElevation="10dp"
-            app:cardBackgroundColor="@color/white">
-        <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:orientation="vertical">
-                <com.google.android.material.imageview.ShapeableImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:src="@drawable/mcq"
-                    android:clickable="false"
-                    android:focusable="false"/>
-                <com.google.android.material.textview.MaterialTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="24sp"
-                    android:text="Multi-choice"
-                    android:textAlignment="center"
-                    android:textColor="@color/blue"/>
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/math_quiz_cv"
-            android:layout_width="175dp"
-            android:layout_height="100dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            app:cardCornerRadius="20dp"
-            app:cardElevation="10dp"
-            app:cardBackgroundColor="@color/white">
+            app:cardElevation="4dp"
+            app:layout_constraintEnd_toStartOf="@+id/math_quiz_cv"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ring_bell_cv">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:orientation="vertical">
+
                 <com.google.android.material.imageview.ShapeableImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:src="@drawable/test"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
                     android:clickable="false"
-                    android:focusable="false"/>
+                    android:focusable="false"
+                    android:src="@drawable/multiple" />
+
                 <com.google.android.material.textview.MaterialTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="24sp"
-                    android:text="Single Choice"
+                    android:layout_marginTop="8dp"
+                    android:text="Multi-choice"
                     android:textAlignment="center"
-                    android:textColor="@color/blue"/>
+                    android:textColor="@color/blue"
+                    android:textSize="18sp" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
-        </LinearLayout>
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/math_quiz_cv"
+            android:layout_width="180dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="20dp"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="4dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/mcq_cv"
+            app:layout_constraintTop_toBottomOf="@+id/tap_tabla_cv">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:src="@drawable/single" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Single Choice"
+                    android:textAlignment="center"
+                    android:textColor="@color/blue"
+                    android:textSize="18sp" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/canvas_cv"
+            android:layout_width="180dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="24dp"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="4dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/mcq_cv">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:src="@drawable/canvas" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Canvas"
+                    android:textAlignment="center"
+                    android:textColor="@color/blue"
+                    android:textSize="18sp" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/number_line_cv"
             android:layout_width="match_parent"
-            android:layout_height="75dp"
-            android:layout_marginStart="25dp"
-            android:layout_marginEnd="25dp"
-            android:layout_marginBottom="15dp"
-            app:cardCornerRadius="15dp"
-            app:cardBackgroundColor="@color/white">
-            <LinearLayout
+            android:layout_height="72dp"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="32dp"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="4dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/canvas_cv">
+
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:layout_height="match_parent">
+
                 <com.google.android.material.imageview.ShapeableImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_marginStart="50dp"
-                    android:src="@drawable/numberline"
-                    android:clickable="false"
-                    android:focusable="false"/>
+                    android:id="@+id/ic_chart"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="16dp"
+                    android:src="@drawable/chart" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/num_line_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_toEndOf="@id/ic_chart"
+                    android:text="Number Line"
+                    android:textColor="@color/blue"
+                    android:textSize="20sp" />
+
                 <com.google.android.material.textview.MaterialTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="24sp"
-                    android:layout_marginStart="30dp"
-                    android:text="Number Line"
-                    android:textColor="@color/blue"/>
-            </LinearLayout>
+                    android:layout_below="@id/num_line_tv"
+                    android:layout_marginStart="18dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_toEndOf="@id/ic_chart"
+                    android:text="Explore numbers visually"
+                    android:textColor="@color/lightBlue"
+                    android:textSize="12sp" />
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:src="@drawable/arrow_forward" />
+
+
+            </RelativeLayout>
         </com.google.android.material.card.MaterialCardView>
 
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/speak_numbers_cv"
+            android:layout_width="match_parent"
+            android:layout_height="72dp"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="16dp"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="4dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/number_line_cv">
 
-    </LinearLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-</FrameLayout>
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/ic_mic"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="18dp"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:src="@drawable/mic" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/recite_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_toEndOf="@id/ic_mic"
+                    android:text="Recite Numbers"
+                    android:textColor="@color/blue"
+                    android:textSize="20sp" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/recite_tv"
+                    android:layout_marginStart="18dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_toEndOf="@id/ic_mic"
+                    android:text="Practice number pronunciation"
+                    android:textColor="@color/lightBlue"
+                    android:textSize="12sp" />
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:src="@drawable/arrow_forward" />
+
+            </RelativeLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/speak_numbers_cv" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

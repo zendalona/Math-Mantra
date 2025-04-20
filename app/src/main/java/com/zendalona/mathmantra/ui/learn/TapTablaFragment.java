@@ -1,12 +1,8 @@
-package com.zendalona.mathmantra.ui;
+package com.zendalona.mathmantra.ui.learn;
 
 import android.app.AlertDialog;
 import android.os.Bundle;
-
-import androidx.appcompat.app.ActionBar;
 import androidx.fragment.app.Fragment;
-
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,23 +10,20 @@ import android.view.ViewGroup;
 import com.bumptech.glide.Glide;
 import com.zendalona.mathmantra.R;
 import com.zendalona.mathmantra.databinding.DialogResultBinding;
-import com.zendalona.mathmantra.databinding.FragmentRingBellBinding;
-import com.zendalona.mathmantra.utils.AccelerometerUtility;
+import com.zendalona.mathmantra.databinding.FragmentTapTablaBinding;
 import com.zendalona.mathmantra.utils.RandomValueGenerator;
-import com.zendalona.mathmantra.utils.ResponseFeedbackDialog;
 import com.zendalona.mathmantra.utils.SoundEffectUtility;
 import com.zendalona.mathmantra.utils.TTSUtility;
 
-public class RingBellFragment extends Fragment {
+public class TapTablaFragment extends Fragment {
 
-    private FragmentRingBellBinding binding;
-    private AccelerometerUtility accelerometerUtility;
+    private FragmentTapTablaBinding binding;
     private SoundEffectUtility soundEffectUtility;
     private RandomValueGenerator randomValueGenerator;
     private TTSUtility tts;
-    int count, target;
+    private int count, target;
 
-    public RingBellFragment() {
+    public TapTablaFragment() {
         // Required empty public constructor
     }
 
@@ -38,24 +31,26 @@ public class RingBellFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         soundEffectUtility = SoundEffectUtility.getInstance(requireContext());
-        accelerometerUtility = new AccelerometerUtility(requireContext());
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        binding = FragmentRingBellBinding.inflate(inflater, container, false);
+        // Inflate the layout for this fragment
+        binding = FragmentTapTablaBinding.inflate(inflater, container, false);
         randomValueGenerator = new RandomValueGenerator();
         tts = new TTSUtility(requireContext());
         startGame();
+        binding.tablaAnimationView.setOnClickListener(v -> onTablaTapped());
         return binding.getRoot();
     }
 
-    private void ringBell() {
-        binding.bellAnimationView.playAnimation();
-        soundEffectUtility.playSound(R.raw.bell_ring);
-        binding.ringCount.setText(String.valueOf(++count));
+    private void onTablaTapped() {
+        binding.tapCount.setText(String.valueOf(++count));
+        binding.tablaAnimationView.playAnimation();
+        soundEffectUtility.playSound(R.raw.drums_sound);
         if(count == target) appreciateUser();
     }
+
 
     private void appreciateUser() {
         String message = "Well done";
@@ -79,6 +74,7 @@ public class RingBellFragment extends Fragment {
                 .setView(dialogView)
                 .setPositiveButton("Continue", (dialog, which) -> {
                     dialog.dismiss();
+                    binding.tapCount.setText("0");
                     startGame();
                 })
                 .create()
@@ -87,42 +83,25 @@ public class RingBellFragment extends Fragment {
 
     private void startGame() {
         count = 0;
-        binding.ringCount.setText(String.valueOf(count));
+        binding.tapMeTv.setText(String.valueOf(count));
         target = randomValueGenerator.generateNumberForCountGame();
-        String targetText = "Ring the bell " + target + " times";
+        String targetText = "Tap the drum " + target + " times";
         tts.speak(targetText);
-        binding.ringMeTv.setText(targetText);
+        binding.tapMeTv.setText(targetText);
     }
 
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        // Start a thread to check for shakes
-        new Thread(() -> {
-            while (isVisible()) {
-                try {
-                    Thread.sleep(200);
-                }
-                catch (InterruptedException e) {
-                    Log.d("Accelerometer Thread sleep Error",e.getLocalizedMessage());
-                    e.printStackTrace();
-                }
-                if (accelerometerUtility.isDeviceShaken()) requireActivity().runOnUiThread(this::ringBell);
-            }
-        }).start();
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        accelerometerUtility.unregisterListener();
-    }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        // Release resources related to binding
         binding = null;
-        tts.shutdown();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        // Release sound effect resources when fragment is destroyed
+        // FIXME : soundEffectUtility.release();
     }
 }
