@@ -12,11 +12,9 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.zendalona.mathmantra.databinding.ActivityMainBinding;
-import com.zendalona.mathmantra.ui.DashboardFragment;
+import com.zendalona.mathmantra.ui.learn.DashboardFragment;
 import com.zendalona.mathmantra.utils.FragmentNavigation;
 import com.zendalona.mathmantra.utils.PermissionManager;
-
-import java.util.Optional;
 
 public class MainActivity extends AppCompatActivity implements FragmentNavigation {
     private ActivityMainBinding binding;

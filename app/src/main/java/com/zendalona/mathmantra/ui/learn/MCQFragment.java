@@ -1,4 +1,4 @@
-package com.zendalona.mathmantra.ui;
+package com.zendalona.mathmantra.ui.learn;
 
 import android.app.AlertDialog;
 import android.os.Bundle;
@@ -18,12 +18,8 @@ import com.zendalona.mathmantra.utils.RandomValueGenerator;
 import com.zendalona.mathmantra.utils.TTSUtility;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.function.Function;
 
 public class MCQFragment extends Fragment {
 
