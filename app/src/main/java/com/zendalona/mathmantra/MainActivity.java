@@ -44,16 +44,17 @@ public class MainActivity extends AppCompatActivity implements FragmentNavigatio
         permissionManager = new PermissionManager(this, new PermissionManager.PermissionCallback() {
             @Override
             public void onPermissionGranted() {
-                Log.d("PermissionManager.PermissionCallback", "Granted!");
+                Log.d("PermissionManager.PermissionCallback", "Permission granted!");
             }
             @Override
             public void onPermissionDenied() {
-                Log.w("PermissionManager.PermissionCallback", "Denied!");
+                Log.w("PermissionManager.PermissionCallback", "Permission denied!");
             }
         });
-        // TODO : ask for the sensor permissions
+        
+        // Request necessary permissions for app functionality
         permissionManager.requestMicrophonePermission();
-//        permissionManager.requestAccelerometerPermission();
+        permissionManager.requestAccelerometerPermission();
     }
 
     @Override
@@ -73,8 +74,41 @@ public class MainActivity extends AppCompatActivity implements FragmentNavigatio
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.setTransition(transition);
         fragmentTransaction.replace(binding.fragmentContainer.getId(), fragment);
-        // TODO : binding.toolbar.setTitle();
+        
+        // Set appropriate toolbar title based on fragment type
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            String title = getFragmentTitle(fragment);
+            actionBar.setTitle(title);
+        }
+        
         fragmentTransaction.commit();
+    }
+    
+    private String getFragmentTitle(Fragment fragment) {
+        String className = fragment.getClass().getSimpleName();
+        switch (className) {
+            case "DashboardFragment":
+                return getString(R.string.app_name);
+            case "ChooseLessonFragment":
+                return "Choose Lesson";
+            case "MathQuizFragment":
+                return "Math Quiz";
+            case "MCQFragment":
+                return "Multiple Choice";
+            case "CountNumbersFragment":
+                return "Count Numbers";
+            case "NumberLineFragment":
+                return "Number Line";
+            case "NarratorFragment":
+                return "Narrator";
+            case "RingBellFragment":
+                return "Ring Bell";
+            case "TapTablaFragment":
+                return "Tap Tabla";
+            default:
+                return getString(R.string.app_name);
+        }
     }
 
 }

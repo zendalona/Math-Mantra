@@ -47,22 +47,39 @@ public class PermissionManager {
             if (ContextCompat.checkSelfPermission(activity, permissionToRequest) == PackageManager.PERMISSION_GRANTED) {
                 if (callback != null) callback.onPermissionGranted();
             } else {
-                Log.w(TAG  + " :: requestPermission()", "Permission not already granted. " + permissionToRequest + "w/" + getRequestCode());
-                String[] permissionsToRequest = {Manifest.permission.RECORD_AUDIO, Manifest.permission.BODY_SENSORS};
-                Log.i(TAG, "requesting permissions : " + Arrays.toString(permissionsToRequest));
-                ActivityCompat.requestPermissions(activity, permissionsToRequest, 101);
-//                ActivityCompat.requestPermissions(activity, new String[]{permissionToRequest}, 42);
+                int requestCode = getRequestCode();
+                if (requestCode != -1) {
+                    Log.w(TAG + " :: requestPermission()", "Permission not already granted. " + permissionToRequest + " with request code: " + requestCode);
+                    Log.i(TAG, "requesting permission: " + permissionToRequest);
+                    ActivityCompat.requestPermissions(activity, new String[]{permissionToRequest}, requestCode);
+                } else {
+                    Log.e(TAG + " :: requestPermission()", "Invalid request code for permission: " + permissionToRequest);
+                    if (callback != null) callback.onPermissionDenied();
+                }
             }
+        } else {
+            Log.e(TAG + " :: requestPermission()", "permissionToRequest value is null");
         }
-        else Log.e(TAG + " :: requestPermission()", "permissionToRequest value is null");
     }
 
     public void handlePermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        if(callback != null) {
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) callback.onPermissionGranted();
-             else callback.onPermissionDenied();
+        Log.i(TAG + " :: handlePermissionsResult()", "Request code: " + requestCode + ", Permissions: " + Arrays.toString(permissions));
+        
+        if (callback != null) {
+            if (requestCode == REQUEST_CODE_MICROPHONE || requestCode == REQUEST_CODE_ACCELEROMETER) {
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    Log.i(TAG, "Permission granted for request code: " + requestCode);
+                    callback.onPermissionGranted();
+                } else {
+                    Log.w(TAG, "Permission denied for request code: " + requestCode);
+                    callback.onPermissionDenied();
+                }
+            } else {
+                Log.w(TAG + " :: handlePermissionsResult()", "Unknown request code: " + requestCode);
+            }
+        } else {
+            Log.w(TAG + " :: handlePermissionsResult()", "callback value is null");
         }
-        else Log.w(TAG + " :: handlePermissionsResult() ","callback value is null");
     }
 
     public interface PermissionCallback {
